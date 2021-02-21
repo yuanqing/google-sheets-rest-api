@@ -8,5 +8,5 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: bahmutov/npm-install@v1
-      - run: npm run lint
-      - run: npm run fix
+      - run: npm run-script lint
+      - run: npm run-script fix
