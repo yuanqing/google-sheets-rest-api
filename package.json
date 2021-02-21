@@ -1,0 +1,31 @@
+{
+  "name": "@yuanqing/google-sheets-apps-script",
+  "version": "0.0.0",
+  "description": "",
+  "keywords": [
+    "google-apps-scripts",
+    "google-sheets",
+    "sheet",
+    "sheets",
+    "spreadsheet",
+    "spreadsheets"
+  ],
+  "license": "MIT",
+  "author": "Yuan Qing Lim",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/yuanqing/sheets.git"
+  },
+  "files": [
+    "src"
+  ],
+  "main": "src/index.js",
+  "scripts": {
+    "fix": "prettier-standard '{example,src}/**/*.js'",
+    "lint": "standard '{example,src}/**/*.js'"
+  },
+  "devDependencies": {
+    "prettier-standard": "^16.4.1",
+    "standard": "^16.0.3"
+  }
+}
