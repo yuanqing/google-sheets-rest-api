@@ -1,4 +1,4 @@
-<button>write</button>
+<button>add</button>
 <script src="../src/index.js"></script>
 <script>
   document.querySelector('button').addEventListener('click', async function () {
@@ -6,11 +6,10 @@
       { id: 4, name: 'biz' },
       { id: 5, name: 'qux' }
     ]
-    const result = await sheets.write(data, {
+    await sheets.add(data, {
       deploymentId: 'AKfycbz6BDwm94CYsoQGPx8f6OfPxzPKqs7kf2Fn6NRAESG3H0Cs01gzbKlR',
       sheetName: 'Sheet1',
       accessToken: 'foo'
     })
-    console.log(result)
   })
 </script>

@@ -1,8 +1,37 @@
 /* global ContentService, LockService, SpreadsheetApp */
 
-const ACCESS_TOKENS = [
-  'foo'
-]
+const ACCESS_TOKENS = ['foo']
+
+function add (sheet, options) {
+  if (typeof options.accessToken === 'undefined') {
+    throw new Error('Need an `accessToken`')
+  }
+  if (ACCESS_TOKENS.indexOf(options.accessToken) === -1) {
+    throw new Error(`Invalid access token: ${options.accessToken}`)
+  }
+  const lock = LockService.getScriptLock()
+  lock.waitLock(3000)
+  const newRowIndex = options.mode === 'append' ? sheet.getLastRow() + 1 : 2
+  sheet.insertRows(newRowIndex, options.data.length)
+  const headers = getHeaders(sheet)
+  const newRowsData = []
+  for (const row of options.data) {
+    const newRowData = []
+    for (const header of headers) {
+      newRowData.push(typeof row[header] === 'undefined' ? '' : row[header])
+    }
+    newRowsData.push(newRowData)
+  }
+  const range = sheet.getRange(
+    newRowIndex,
+    1,
+    newRowsData.length,
+    headers.length
+  )
+  range.setValues(newRowsData)
+  lock.releaseLock()
+  return null
+}
 
 function read (sheet) {
   const headers = getHeaders(sheet)
@@ -26,32 +55,6 @@ function read (sheet) {
   return result
 }
 
-function write (sheet, options) {
-  if (typeof options.accessToken === 'undefined') {
-    throw new Error('Need an `accessToken`')
-  }
-  if (ACCESS_TOKENS.indexOf(options.accessToken) === -1) {
-    throw new Error(`Invalid access token: ${options.accessToken}`)
-  }
-  const lock = LockService.getScriptLock()
-  lock.waitLock(3000)
-  const newRowIndex = options.mode === 'append' ? sheet.getLastRow() + 1 : 2
-  sheet.insertRows(newRowIndex, options.data.length)
-  const headers = getHeaders(sheet)
-  const newRowsData = []
-  for (const row of options.data) {
-    const newRowData = []
-    for (const header of headers) {
-      newRowData.push(typeof row[header] === 'undefined' ? '' : row[header])
-    }
-    newRowsData.push(newRowData)
-  }
-  const range = sheet.getRange(newRowIndex, 1, newRowsData.length, headers.length)
-  range.setValues(newRowsData)
-  lock.releaseLock()
-  return null
-}
-
 function getHeaders (sheet) {
   const range = sheet.getRange(1, 1, 1, sheet.getLastColumn())
   const rows = range.getValues()
@@ -68,8 +71,8 @@ function doPost (event) {
       sheetName
     )
     const operations = {
-      read,
-      write
+      add,
+      read
     }
     if (typeof operations[operation] === 'undefined') {
       throw new Error(`Invalid operation: ${operation}`)

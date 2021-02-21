@@ -6,9 +6,9 @@
     })
   }
 
-  function write (data, options) {
+  function add (data, options) {
     return post(options.deploymentId, {
-      operation: 'write',
+      operation: 'add',
       sheetName: options.sheetName,
       accessToken: options.accessToken,
       mode: typeof options.mode === 'undefined' ? 'append' : options.mode,
@@ -35,8 +35,8 @@
   }
 
   const sheets = {
-    read,
-    write
+    add,
+    read
   }
   if (typeof module === 'object') {
     module.exports = sheets
