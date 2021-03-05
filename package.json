@@ -1,7 +1,7 @@
 {
   "name": "google-sheets-rest-api",
   "version": "0.0.0",
-  "description": "",
+  "description": "A tiny client-side module to read from and write to Google Sheets",
   "keywords": [
     "google-apps-scripts",
     "google-sheets",
@@ -24,10 +24,13 @@
   "main": "src/index.js",
   "scripts": {
     "fix": "prettier-standard '{example,src}/**/*.js'",
-    "lint": "standard '{example,src}/**/*.js'"
+    "lint": "standard '{example,src}/**/*.js'",
+    "size": "terser --compress --mangle -- src/index.js | gzip-size"
   },
   "devDependencies": {
+    "gzip-size-cli": "^4.0.0",
     "prettier-standard": "^16.4.1",
-    "standard": "^16.0.3"
+    "standard": "^16.0.3",
+    "terser": "^5.6.0"
   }
 }
