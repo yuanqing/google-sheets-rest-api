@@ -2,10 +2,10 @@
 <script src="../src/index.js"></script>
 <script>
   document.querySelector('button').addEventListener('click', async function () {
-    const result = await sheets.read({
-      deploymentId: 'AKfycbz6BDwm94CYsoQGPx8f6OfPxzPKqs7kf2Fn6NRAESG3H0Cs01gzbKlR',
-      sheetName: 'Sheet1'
+    const { read } = googleSheets({
+      deploymentId: 'AKfycbz6BDwm94CYsoQGPx8f6OfPxzPKqs7kf2Fn6NRAESG3H0Cs01gzbKlR'
     })
+    const result = await read({ sheetName: 'Sheet1' })
     console.log(result)
   })
 </script>

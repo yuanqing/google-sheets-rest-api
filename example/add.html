@@ -2,14 +2,14 @@
 <script src="../src/index.js"></script>
 <script>
   document.querySelector('button').addEventListener('click', async function () {
+    const { add } = googleSheets({
+      deploymentId: 'AKfycbz6BDwm94CYsoQGPx8f6OfPxzPKqs7kf2Fn6NRAESG3H0Cs01gzbKlR',
+      accessToken: 'foo'
+    })
     const data = [
       { id: 4, name: 'biz' },
       { id: 5, name: 'qux' }
     ]
-    await sheets.add(data, {
-      deploymentId: 'AKfycbz6BDwm94CYsoQGPx8f6OfPxzPKqs7kf2Fn6NRAESG3H0Cs01gzbKlR',
-      sheetName: 'Sheet1',
-      accessToken: 'foo'
-    })
+    await add(data, { sheetName: 'Sheet1' })
   })
 </script>
