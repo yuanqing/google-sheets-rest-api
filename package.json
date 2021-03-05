@@ -1,6 +1,6 @@
 {
   "name": "google-sheets-rest-api",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A tiny client-side module to read from and write to Google Sheets",
   "keywords": [
     "google-apps-scripts",
