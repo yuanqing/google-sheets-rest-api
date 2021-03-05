@@ -1,5 +1,5 @@
 ;(function (window) {
-  function googleSheets (config) {
+  function googleSheetsRestApi (config) {
     function read (options) {
       return post({
         operation: 'read',
@@ -42,8 +42,8 @@
   }
 
   if (typeof module === 'object') {
-    module.exports = googleSheets
+    module.exports = googleSheetsRestApi
   } else {
-    window.googleSheets = googleSheets
+    window.googleSheetsRestApi = googleSheetsRestApi
   }
 })(this)

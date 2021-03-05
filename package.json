@@ -1,10 +1,12 @@
 {
-  "name": "@yuanqing/google-sheets-apps-script",
+  "name": "google-sheets-rest-api",
   "version": "0.0.0",
   "description": "",
   "keywords": [
     "google-apps-scripts",
     "google-sheets",
+    "google-sheets-api",
+    "google-sheets-rest-api",
     "sheet",
     "sheets",
     "spreadsheet",
@@ -14,7 +16,7 @@
   "author": "Yuan Qing Lim",
   "repository": {
     "type": "git",
-    "url": "git://github.com/yuanqing/sheets.git"
+    "url": "git://github.com/yuanqing/google-sheets-rest-api.git"
   },
   "files": [
     "src"
